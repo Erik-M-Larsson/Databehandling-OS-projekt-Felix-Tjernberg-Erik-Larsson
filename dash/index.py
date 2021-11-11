@@ -3,7 +3,8 @@ from dash.dependencies import Input, Output
 import dash_html_components as html
 
 from app import app
-from apps import landing, sport
+from components import landing
+from components.sport import sport
 
 
 app.layout = html.Div(
@@ -15,7 +16,7 @@ app.layout = html.Div(
 def display_page(path_name):
     path_name_split = path_name.split("/")
 
-    # Renders sport app if adress includes sport else landing app
+    # Renders sport component if adress includes sport else landing component
     if path_name_split[1] == "sport":
         return sport.layout
     else:
