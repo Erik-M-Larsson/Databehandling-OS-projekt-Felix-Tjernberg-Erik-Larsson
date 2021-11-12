@@ -17,8 +17,8 @@ layout = html.Div(
         dcc.Dropdown(
             clearable=False,
             id="sport-dropdown",
-            value="Aeronautics",
             options=[{"label": f"{sport}", "value": sport} for sport in sport_list],
+            placeholder="Select a sport",
         ),
         dcc.Graph(id="sport-histogram"),
         dcc.Link("Back", href="/"),
@@ -34,6 +34,8 @@ def load_data_frame(value):
 
 @app.callback(Output("sport-name", "children"), Input("sport-dropdown", "value"))
 def update_heading_text(value):
+    if value == None:
+        return "Sport stats"
     return value
 
 
