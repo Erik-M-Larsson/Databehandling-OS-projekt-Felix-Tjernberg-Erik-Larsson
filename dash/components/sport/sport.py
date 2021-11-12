@@ -30,6 +30,10 @@ layout = html.Div(
             ]
         ),
         dcc.Graph(id="sport-age-histogram"),
+        dcc.Graph(id="sport-gender-pie"),
+        dcc.Graph(id="sport-height-histogram"),
+        dcc.Graph(id="sport-weight-histogram"),
+        dcc.Graph(id="sport-medal-race"),
         dcc.Link("Back", href="/"),
     ]
 )
@@ -56,9 +60,57 @@ def update_heading_text(value):
     Output("sport-age-histogram", "figure"),
     Input("sport-data-frame", "data"),
 )
-def update_age_histogram_graph(data):
+def update_age_histogram(data):
     if data == None:
         return px.histogram()
 
     sport_data_frame = pd.read_json(data)
     return plots.age_histogram(sport_data_frame)
+
+
+@app.callback(
+    Output("sport-gender-pie", "figure"),
+    Input("sport-data-frame", "data"),
+)
+def update_gender_pie(data):
+    if data == None:
+        return px.pie()
+
+    sport_data_frame = pd.read_json(data)
+    return plots.gender_pie(sport_data_frame)
+
+
+@app.callback(
+    Output("sport-height-histogram", "figure"),
+    Input("sport-data-frame", "data"),
+)
+def update_height_histogram(data):
+    if data == None:
+        return px.histogram()
+
+    sport_data_frame = pd.read_json(data)
+    return plots.height_histogram(sport_data_frame)
+
+
+@app.callback(
+    Output("sport-weight-histogram", "figure"),
+    Input("sport-data-frame", "data"),
+)
+def update_weight_histogram(data):
+    if data == None:
+        return px.histogram()
+
+    sport_data_frame = pd.read_json(data)
+    return plots.weight_histogram(sport_data_frame)
+
+
+@app.callback(
+    Output("sport-medal-race", "figure"),
+    Input("sport-data-frame", "data"),
+)
+def update_medal_race(data):
+    if data == None:
+        return px.bar()
+
+    sport_data_frame = pd.read_json(data)
+    return plots.medal_race_plot(sport_data_frame)
