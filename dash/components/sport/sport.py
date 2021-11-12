@@ -7,6 +7,7 @@ from dash.dependencies import Input, Output
 from app import app
 from components.sport.load_sport_data import load_sport_data_frames
 from components.sport.sport_list import sport_list
+import components.sport.plots as plots
 
 
 sport_data_frames = load_sport_data_frames()
@@ -28,7 +29,7 @@ layout = html.Div(
                 ),
             ]
         ),
-        dcc.Graph(id="sport-histogram"),
+        dcc.Graph(id="sport-age-histogram"),
         dcc.Link("Back", href="/"),
     ]
 )
@@ -52,18 +53,12 @@ def update_heading_text(value):
 
 
 @app.callback(
-    Output("sport-histogram", "figure"),
+    Output("sport-age-histogram", "figure"),
     Input("sport-data-frame", "data"),
 )
-def update_histogram_graph(data):
+def update_age_histogram_graph(data):
     if data == None:
         return px.histogram()
 
     sport_data_frame = pd.read_json(data)
-    figure = px.histogram(
-        sport_data_frame,
-        x="Age",
-        labels={"count": "Antal"},
-        title="Age distribution",
-    )
-    return figure
+    return plots.age_histogram(sport_data_frame)
