@@ -1,14 +1,16 @@
-import dash_core_components as dcc
-import dash_html_components as html
-import plotly_express as px
 import pandas as pd
+import plotly_express as px
+from dash import html
+from dash import dcc
 from dash.dependencies import Input, Output
 
 from app import app
 from components.sport.load_sport_data import load_sport_data_frames
 from components.sport.sport_list import sport_list
 
+
 sport_data_frames = load_sport_data_frames()
+
 
 layout = html.Div(
     [
