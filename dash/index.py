@@ -14,10 +14,7 @@ app.layout = html.Div(
 
 @app.callback(Output("page-content", "children"), Input("url", "pathname"))
 def display_page(path_name):
-    path_name_split = path_name.split("/")
-
-    # Renders sport component if adress includes sport else landing component
-    if path_name_split[1] == "sport":
+    if path_name == "/sport-stats":
         return sport.layout
     else:
         return landing.layout
