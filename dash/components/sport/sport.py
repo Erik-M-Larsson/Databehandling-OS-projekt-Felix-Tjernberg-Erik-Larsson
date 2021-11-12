@@ -15,12 +15,18 @@ sport_data_frames = load_sport_data_frames()
 layout = html.Div(
     [
         dcc.Store(id="sport-data-frame"),
-        html.H1(id="sport-name"),
-        dcc.Dropdown(
-            clearable=False,
-            id="sport-dropdown",
-            options=[{"label": f"{sport}", "value": sport} for sport in sport_list],
-            placeholder="Select a sport",
+        html.Header(
+            [
+                html.H1(id="sport-name"),
+                dcc.Dropdown(
+                    clearable=False,
+                    id="sport-dropdown",
+                    options=[
+                        {"label": f"{sport}", "value": sport} for sport in sport_list
+                    ],
+                    placeholder="Select a sport",
+                ),
+            ]
         ),
         dcc.Graph(id="sport-histogram"),
         dcc.Link("Back", href="/"),
