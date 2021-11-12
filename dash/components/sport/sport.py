@@ -33,7 +33,7 @@ def load_data_frame(value):
 
 
 @app.callback(Output("sport-name", "children"), Input("sport-dropdown", "value"))
-def update_page_title(value):
+def update_heading_text(value):
     return value
 
 
