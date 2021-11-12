@@ -8,7 +8,7 @@ from components.sport import sport
 
 
 app.layout = html.Div(
-    [dcc.Location(id="url", refresh=False), html.Div(id="page-content")]
+    [dcc.Location(id="url", refresh=False), html.Article(id="page-content")]
 )
 app.title = "Olympic sports dash app"
 
