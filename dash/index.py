@@ -10,6 +10,7 @@ from components.sport import sport
 app.layout = html.Div(
     [dcc.Location(id="url", refresh=False), html.Div(id="page-content")]
 )
+app.title = "Olympic sports dash app"
 
 
 @app.callback(Output("page-content", "children"), Input("url", "pathname"))
