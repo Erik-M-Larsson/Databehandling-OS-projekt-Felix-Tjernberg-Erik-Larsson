@@ -30,6 +30,9 @@ layout = html.Div(
 
 @app.callback(Output("sport-data-frame", "data"), Input("sport-dropdown", "value"))
 def load_data_frame(value):
+    if value == None:
+        return
+
     sport_data_frame = sport_data_frames[f"{value.capitalize()}"]
     return sport_data_frame.to_json()
 
@@ -38,6 +41,7 @@ def load_data_frame(value):
 def update_heading_text(value):
     if value == None:
         return "Sport stats"
+
     return value
 
 
@@ -46,6 +50,9 @@ def update_heading_text(value):
     Input("sport-data-frame", "data"),
 )
 def update_histogram_graph(data):
+    if data == None:
+        return px.histogram()
+
     sport_data_frame = pd.read_json(data)
     figure = px.histogram(
         sport_data_frame,
