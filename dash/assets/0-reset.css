@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Work+Sans:wght@900&display=swap');
-
-/* Reset */
 *,
 *::before,
 *::after {
@@ -68,19 +65,4 @@ p {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-body {
-  background-color: seashell; /* Testing purpose */
-  font-family: 'Noto Sans', sans-serif;
-}
-
-h1 {
-  font-family: 'Work Sans', sans-serif;
-}
-
-/* Testing purpose */
-#landing,
-#sport {
-  background-color: brown;
 }
