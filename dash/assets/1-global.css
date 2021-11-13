@@ -5,6 +5,12 @@ body {
 }
 
 h1,
+h2,
+p {
+  margin-inline: 0.5em;
+}
+
+h1,
 h2 {
   --heading-font-size: clamp(4rem, 10vw, 5rem);
   font-family: 'Work Sans', sans-serif;
@@ -33,8 +39,8 @@ nav {
   z-index: 10;
 }
 
-nav ul,
-nav li {
+nav li,
+nav ul {
   display: flex;
 }
 
@@ -45,7 +51,15 @@ nav li {
   list-style-type: none;
 }
 
-nav img {
+nav img,
+nav ul {
   margin: 0 auto;
+}
+
+nav ul {
+  max-width: 800px;
+}
+
+nav img {
   max-height: 50px;
 }
