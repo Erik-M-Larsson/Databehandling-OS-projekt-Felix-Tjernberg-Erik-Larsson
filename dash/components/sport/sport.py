@@ -34,8 +34,13 @@ layout = html.Div(
         html.H2("Player type"),
         dcc.Graph(id="sport-gender-pie"),
         dcc.Graph(id="sport-age-histogram"),
-        dcc.Graph(id="sport-height-histogram"),
-        dcc.Graph(id="sport-weight-histogram"),
+        html.Div(
+            [
+                dcc.Graph(id="sport-height-histogram"),
+                dcc.Graph(id="sport-weight-histogram"),
+            ],
+            id="height-and-width-histograms",
+        ),
     ],
     id="sport",
 )

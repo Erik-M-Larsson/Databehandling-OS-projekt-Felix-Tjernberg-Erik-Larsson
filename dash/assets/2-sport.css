@@ -9,3 +9,13 @@
 #sport h2 {
   margin-top: 2em;
 }
+
+@media only screen and (min-width: 600px) {
+  #height-and-width-histograms {
+    display: flex;
+  }
+
+  #height-and-width-histograms .dash-graph {
+    width: 50%;
+  }
+}
