@@ -8,5 +8,6 @@ layout = html.Div(
     [
         html.H1("Sverige är bra fan"),
         html.A("Go to sport stats", href="/sport-stats"),
-    ]
+    ],
+    id="landing",
 )
