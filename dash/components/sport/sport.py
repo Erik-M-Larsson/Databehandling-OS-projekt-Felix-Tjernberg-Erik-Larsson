@@ -25,15 +25,17 @@ layout = html.Div(
                     options=[
                         {"label": f"{sport}", "value": sport} for sport in sport_list
                     ],
+                    # value="Alpinism"
                     placeholder="Select a sport",
                 ),
             ]
         ),
-        dcc.Graph(id="sport-age-histogram"),
+        dcc.Graph(id="sport-medal-race"),
+        html.H2("Player type"),
         dcc.Graph(id="sport-gender-pie"),
+        dcc.Graph(id="sport-age-histogram"),
         dcc.Graph(id="sport-height-histogram"),
         dcc.Graph(id="sport-weight-histogram"),
-        dcc.Graph(id="sport-medal-race"),
         dcc.Link("Back", href="/"),
     ],
     id="sport",

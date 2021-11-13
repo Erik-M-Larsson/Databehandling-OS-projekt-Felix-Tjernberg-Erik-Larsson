@@ -4,6 +4,20 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
-h1 {
+h1,
+h2 {
+  --heading-font-size: clamp(4rem, 10vw, 5rem);
   font-family: 'Work Sans', sans-serif;
+  text-align: center;
+}
+h1 {
+  font-size: var(--heading-font-size);
+  margin-block: 0.2em;
+}
+h2 {
+  font-size: calc(var(--heading-font-size) * 0.75);
+}
+
+p {
+  font-size: clamp(1.25rem, 4vw, 2.25rem);
 }

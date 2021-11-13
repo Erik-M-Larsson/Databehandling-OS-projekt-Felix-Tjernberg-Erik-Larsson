@@ -4,9 +4,11 @@ import itertools
 
 
 def age_histogram(df):
-    return px.histogram(
+    fig = px.histogram(
         df, x="Age", labels={"Age": "Ålder", "count": "Antal"}, title="Åldersfördelning"
     )
+    fig.update_layout(title={"x": 0.5})
+    return fig
 
 
 def gender_pie(df):
@@ -14,13 +16,15 @@ def gender_pie(df):
         df[df["Sex"] == "M"]["Sex"].count(),
         df[df["Sex"] == "F"]["Sex"].count(),
     )
-    return px.pie(
+    fig = px.pie(
         df, values=gender_count, names=["Män", "Kvinnor"], title="Könsfördelning"
     )
+    fig.update_layout(title={"x": 0.5}, legend={"y": 0.5})
+    return fig
 
 
 def height_histogram(df):
-    return px.histogram(
+    fig = px.histogram(
         df,
         x="Height",
         labels={"Height": "Längd", "count": "Antal", "Sex": "Kön", "M": "Män"},
@@ -28,10 +32,12 @@ def height_histogram(df):
         color="Sex",
         barmode="group",
     )
+    fig.update_layout(title={"x": 0.5})
+    return fig
 
 
 def weight_histogram(df):
-    return px.histogram(
+    fig = px.histogram(
         df,
         x="Weight",
         labels={"Weight": "Vikt", "count": "Antal", "Sex": "Kön", "M": "Män"},
@@ -39,6 +45,8 @@ def weight_histogram(df):
         color="Sex",
         barmode="group",
     )
+    fig.update_layout(title={"x": 0.5})
+    return fig
 
 
 def medal_race_plot(sport_data: "DataFrame") -> None:
@@ -90,7 +98,7 @@ def medal_race_plot(sport_data: "DataFrame") -> None:
     )
 
     # Sort y-axis
-    fig.update_layout(yaxis={"categoryorder": "total ascending"})
+    fig.update_layout(title={"x": 0.5}, yaxis={"categoryorder": "total ascending"})
 
     # Change animation duration
     numb_of_games = len(medal_count["Games"].unique())
