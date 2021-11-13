@@ -13,6 +13,10 @@ import components.sport.plots as plots
 sport_data_frames = load_sport_data_frames()
 
 
+anatomy_filename = "assets/anatomy.svg"
+
+medals_filename = "assets/os-medals.svg"
+
 layout = html.Div(
     [
         dcc.Store(id="sport-data-frame"),
@@ -25,13 +29,24 @@ layout = html.Div(
                     options=[
                         {"label": f"{sport}", "value": sport} for sport in sport_list
                     ],
-                    # value="Alpinism"
-                    placeholder="Select a sport",
+                    value="Cycling"
+                    # placeholder="Select a sport",
                 ),
             ]
         ),
+        html.H2("Medal race"),
+        html.Img(
+            id="medals-svg",
+            src=medals_filename,
+            alt="Illustration of silver, gold and bronze olympic medals",
+        ),
         dcc.Graph(id="sport-medal-race"),
         html.H2("Player type"),
+        html.Img(
+            id="anatomy-svg",
+            src=anatomy_filename,
+            alt="Illustration of female and male anatomy",
+        ),
         dcc.Graph(id="sport-gender-pie"),
         dcc.Graph(id="sport-age-histogram"),
         html.Div(

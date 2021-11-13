@@ -94,7 +94,7 @@ def medal_race_plot(sport_data: "DataFrame") -> None:
         color="NOC",
         animation_group="NOC",
         animation_frame="Games",
-        title="Medal race",
+        # title="Medal race",
     )
 
     # Sort y-axis
