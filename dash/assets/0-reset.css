@@ -4,8 +4,7 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+main {
   overflow-x: hidden;
 }
 
@@ -13,6 +12,11 @@ img,
 picture {
   display: block;
   max-width: 100%;
+}
+
+ul,
+li {
+  padding: 0;
 }
 
 body,

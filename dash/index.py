@@ -7,8 +7,28 @@ from components import landing
 from components.sport import sport
 
 
+os_rings_filename = "assets/os-rings.svg"
+
 app.layout = html.Div(
-    [dcc.Location(id="url", refresh=False), html.Article(id="page-content")]
+    [
+        html.Nav(
+            [
+                html.Img(src=os_rings_filename, alt="Image of olympic rings"),
+                html.Ul(
+                    [
+                        html.Li([html.A("Home", href="/")]),
+                        html.Li([html.A("Sport stats", href="/sport-stats")]),
+                    ]
+                ),
+            ]
+        ),
+        html.Main(
+            [
+                dcc.Location(id="url", refresh=False),
+                html.Article(id="page-content"),
+            ]
+        ),
+    ],
 )
 app.title = "Olympic sports dash app"
 

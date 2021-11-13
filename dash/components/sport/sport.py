@@ -36,7 +36,6 @@ layout = html.Div(
         dcc.Graph(id="sport-age-histogram"),
         dcc.Graph(id="sport-height-histogram"),
         dcc.Graph(id="sport-weight-histogram"),
-        dcc.Link("Back", href="/"),
     ],
     id="sport",
 )

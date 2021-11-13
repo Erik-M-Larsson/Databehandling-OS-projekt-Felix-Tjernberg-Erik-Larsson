@@ -12,7 +12,8 @@ h2 {
 }
 h1 {
   font-size: var(--heading-font-size);
-  margin-block: 0.2em;
+  margin-top: 0.75em;
+  margin-bottom: 0.2em;
 }
 h2 {
   font-size: calc(var(--heading-font-size) * 0.75);
@@ -20,4 +21,31 @@ h2 {
 
 p {
   font-size: clamp(1.25rem, 4vw, 2.25rem);
+}
+
+nav {
+  background-color: white;
+  flex-direction: column;
+  padding-block: 1rem;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav ul,
+nav li {
+  display: flex;
+}
+
+nav li {
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  list-style-type: none;
+}
+
+nav img {
+  margin: 0 auto;
+  max-height: 50px;
 }
