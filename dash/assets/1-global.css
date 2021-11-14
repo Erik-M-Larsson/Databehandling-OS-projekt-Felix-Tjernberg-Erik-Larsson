@@ -65,3 +65,12 @@ nav ul {
 nav img {
   max-height: 50px;
 }
+
+.dash-graph {
+  margin: 0 2rem;
+}
+
+.main-svg,
+.glass-background {
+  border-radius: 8px;
+}
