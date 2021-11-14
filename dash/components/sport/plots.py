@@ -7,7 +7,10 @@ def age_histogram(df):
     fig = px.histogram(
         df, x="Age", labels={"Age": "Ålder", "count": "Antal"}, title="Åldersfördelning"
     )
-    fig.update_layout(title={"x": 0.5})
+    fig.update_layout(
+        {"paper_bgcolor": "rgba(0,0,0,0)"},
+        title={"x": 0.5},
+    )
     return fig
 
 
@@ -19,7 +22,11 @@ def gender_pie(df):
     fig = px.pie(
         df, values=gender_count, names=["Män", "Kvinnor"], title="Könsfördelning"
     )
-    fig.update_layout(title={"x": 0.5}, legend={"y": 0.5})
+    fig.update_layout(
+        {"paper_bgcolor": "rgba(0,0,0,0)"},
+        title={"x": 0.5},
+        legend={"y": 0.5},
+    )
     return fig
 
 
@@ -32,7 +39,10 @@ def height_histogram(df):
         color="Sex",
         barmode="group",
     )
-    fig.update_layout(title={"x": 0.5})
+    fig.update_layout(
+        {"paper_bgcolor": "rgba(0,0,0,0)"},
+        title={"x": 0.5},
+    )
     return fig
 
 
@@ -45,7 +55,10 @@ def weight_histogram(df):
         color="Sex",
         barmode="group",
     )
-    fig.update_layout(title={"x": 0.5})
+    fig.update_layout(
+        {"paper_bgcolor": "rgba(0,0,0,0)"},
+        title={"x": 0.5},
+    )
     return fig
 
 

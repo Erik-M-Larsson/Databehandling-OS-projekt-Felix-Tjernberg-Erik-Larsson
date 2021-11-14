@@ -41,19 +41,24 @@ layout = html.Div(
         ),
         dcc.Graph(id="sport-medal-race"),
         html.H2("Player type"),
-        html.Img(
-            id="anatomy-svg",
-            src=anatomy_filename,
-            alt="Illustration of female and male anatomy",
-        ),
-        dcc.Graph(id="sport-gender-pie"),
-        dcc.Graph(id="sport-age-histogram"),
-        html.Div(
+        html.Section(
             [
-                dcc.Graph(id="sport-height-histogram"),
-                dcc.Graph(id="sport-weight-histogram"),
+                html.Img(
+                    id="anatomy-svg",
+                    src=anatomy_filename,
+                    alt="Illustration of female and male anatomy",
+                ),
+                dcc.Graph(id="sport-gender-pie"),
+                dcc.Graph(id="sport-age-histogram"),
+                html.Div(
+                    [
+                        dcc.Graph(id="sport-height-histogram"),
+                        dcc.Graph(id="sport-weight-histogram"),
+                    ],
+                    id="height-and-width-histograms",
+                ),
             ],
-            id="height-and-width-histograms",
+            id="player-type",
         ),
     ],
     id="sport",
