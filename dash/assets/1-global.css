@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Work+Sans:wght@900&display=swap');
 
+article > div {
+  padding-bottom: 3rem;
+}
+
 body {
   font-family: 'Noto Sans', sans-serif;
 }
@@ -8,26 +12,23 @@ h1,
 h2,
 p {
   margin-inline: 0.5em;
+  text-align: center;
 }
 
 h1,
 h2 {
   --heading-font-size: clamp(4rem, 10vw, 5rem);
   font-family: 'Work Sans', sans-serif;
-  text-align: center;
   text-transform: capitalize;
 }
 h1 {
   font-size: var(--heading-font-size);
-  margin-top: 0.75em;
   margin-bottom: 0.2em;
+  padding-top: 0.75em;
 }
 h2 {
   font-size: calc(var(--heading-font-size) * 0.75);
-}
-
-p {
-  font-size: clamp(1.25rem, 4vw, 2.25rem);
+  margin-top: 4em;
 }
 
 nav {

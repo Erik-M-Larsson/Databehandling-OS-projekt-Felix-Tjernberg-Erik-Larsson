@@ -1,7 +1,6 @@
 import pandas as pd
 import plotly_express as px
-from dash import html
-from dash import dcc
+from dash import dcc, html
 from dash.dependencies import Input, Output
 
 from app import app
