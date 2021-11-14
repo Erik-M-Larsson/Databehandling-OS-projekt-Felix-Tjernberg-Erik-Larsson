@@ -4,9 +4,7 @@ import itertools
 
 
 def age_histogram(df):
-    return px.histogram(
-        df, x="Age", labels={"Age": "Ålder", "count": "Antal"}, title="Åldersfördelning"
-    )
+    return px.histogram(df, x="Age", labels={}, title="Age distribution")
 
 
 def gender_pie(df):
@@ -15,7 +13,7 @@ def gender_pie(df):
         df[df["Sex"] == "F"]["Sex"].count(),
     )
     return px.pie(
-        df, values=gender_count, names=["Män", "Kvinnor"], title="Könsfördelning"
+        df, values=gender_count, names=["Men", "Women"], title="Gender distribution"
     )
 
 
@@ -23,8 +21,8 @@ def height_histogram(df):
     return px.histogram(
         df,
         x="Height",
-        labels={"Height": "Längd", "count": "Antal", "Sex": "Kön", "M": "Män"},
-        title="Längdfördelning",
+        labels={},
+        title="Height distribution",
         color="Sex",
         barmode="group",
     )
@@ -34,15 +32,15 @@ def weight_histogram(df):
     return px.histogram(
         df,
         x="Weight",
-        labels={"Weight": "Vikt", "count": "Antal", "Sex": "Kön", "M": "Män"},
-        title="Viktfördelning",
+        labels={},
+        title="Weight distribution",
         color="Sex",
         barmode="group",
     )
 
 
 def medal_race_plot(sport_data: "DataFrame") -> None:
-    """Skapa ett rörligt stapeldiagram över akumulerat antal medaljer per land"""
+    """Animated barplot of accumulated number of medals per NOC"""
 
     # Clean data
     data_cleaned = sport_data.dropna(subset=["Medal"])
@@ -63,7 +61,9 @@ def medal_race_plot(sport_data: "DataFrame") -> None:
         inplace=True,
     )
     data_cleaned.sort_values(by="Games", inplace=True)
-    data_cleaned.drop_duplicates(subset=["Games", "Event", "Medal"], inplace=True)
+    data_cleaned.drop_duplicates(
+        subset=["NOC", "Games", "Event", "Medal"], inplace=True
+    )
 
     # Calculate accumulated medals per NOC
     medal_count = data_cleaned.groupby(by=["Games", "NOC"]).count().reset_index()
@@ -84,9 +84,11 @@ def medal_race_plot(sport_data: "DataFrame") -> None:
         x="Cumulative_medals",
         y="NOC",
         color="NOC",
+        color_discrete_sequence=px.colors.qualitative.Alphabet,
         animation_group="NOC",
         animation_frame="Games",
         title="Medal race",
+        labels={"Cumulative_medals": "Medals"},
     )
 
     # Sort y-axis
@@ -96,13 +98,21 @@ def medal_race_plot(sport_data: "DataFrame") -> None:
     numb_of_games = len(medal_count["Games"].unique())
     duration = 1920 - 30 * numb_of_games
     print("numb_of_games: ", numb_of_games, "\n", "duration: ", duration)
-    fig.layout.updatemenus[0].buttons[0].args[1]["frame"][
-        "duration"
-    ] = duration  # Ref: https://community.plotly.com/t/how-to-slow-down-animation-in-plotly-express/31309
+    if numb_of_games > 1:
+        fig.layout.updatemenus[0].buttons[0].args[1]["frame"][
+            "duration"
+        ] = duration  # Ref: https://community.plotly.com/t/how-to-slow-down-animation-in-plotly-express/31309
 
     # Show only top ten
     numb_of_noc = len(medal_count["NOC"].unique())
     fig.update_yaxes(range=(max(numb_of_noc - 10.5, -0.5), numb_of_noc - 0.5))
+    print(
+        "numb_of_noc: ",
+        numb_of_noc,
+        "\n",
+        "Y-axis range=",
+        (max(numb_of_noc - 10.5, -0.5), numb_of_noc - 0.5),
+    )
 
     # Set x-ticks to integers
     fig.update_xaxes(
