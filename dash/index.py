@@ -12,13 +12,13 @@ app.layout = html.Div(
     [
         html.Nav(
             [
+                html.Img(src=os_rings_filename, alt="Image of olympic rings"),
                 html.Ul(
                     [
                         html.Li([html.A("Home", href="/")]),
                         html.Li([html.A("Sport stats", href="/sport-stats")]),
                     ]
                 ),
-                html.Img(src=os_rings_filename, alt="Image of olympic rings"),
             ]
         ),
         html.Main(
