@@ -65,7 +65,7 @@ def load_data_frame(value):
     if value == None:
         return
 
-    sport_data_frame = sport_data_frames[f"{value.capitalize()}"]
+    sport_data_frame = sport_data_frames[f"{format(value.title())}"]
     return sport_data_frame.to_json()
 
 
