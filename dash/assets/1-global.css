@@ -10,13 +10,15 @@ body {
 
 h1,
 h2,
+h3,
 p {
   margin-inline: 0.5em;
   text-align: center;
 }
 
 h1,
-h2 {
+h2,
+h3 {
   --heading-font-size: clamp(4rem, 10vw, 5rem);
   font-family: 'Work Sans', sans-serif;
   text-transform: capitalize;

@@ -23,7 +23,40 @@
     filter: none;
   }
 }
-.glass-background h2 {
+.glass-background h3 {
   font-size: 2rem;
   margin-top: 0;
+}
+.glass-background p {
+  margin-top: 1em;
+}
+
+@media only screen and (min-width: 700px) {
+  #fun-facts {
+    display: flex;
+  }
+  #fun-facts > div {
+    flex-grow: 1;
+  }
+  #fun-facts {
+    flex-wrap: wrap;
+    place-items: center;
+    padding: 2rem;
+  }
+  #fun-facts > div {
+    margin: 0 auto;
+    max-width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #landing-graphs {
+    display: flex;
+  }
+  #landing-graphs > div {
+    flex-grow: 1;
+  }
+  #landing-graphs > div:first-of-type > h2 {
+    padding-bottom: 36px;
+  }
 }
