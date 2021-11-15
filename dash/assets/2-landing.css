@@ -27,9 +27,6 @@
   font-size: 2rem;
   margin-top: 0;
 }
-.glass-background p {
-  margin: 1em auto 0 auto;
-}
 
 @media only screen and (min-width: 700px) {
   #fun-facts {
