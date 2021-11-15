@@ -1,0 +1,57 @@
+#sport-dropdown {
+  margin: 0 auto;
+  width: 50%;
+}
+
+#anatomy-svg {
+  margin: 4rem auto;
+  max-height: 300px;
+}
+
+#medals-svg {
+  margin: 2rem auto 1rem auto;
+  max-height: 50px;
+}
+
+@media only screen and (min-width: 600px) {
+  #height-and-width-histograms {
+    display: flex;
+  }
+
+  #height-and-width-histograms .dash-graph {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #player-type {
+    padding-top: 2rem;
+    padding-bottom: 50%;
+    position: relative;
+  }
+  #player-type > * {
+    position: absolute;
+  }
+  #height-and-width-histograms,
+  #sport-age-histogram {
+    width: 40%;
+  }
+  #player-type .dash-graph {
+    margin: 0;
+  }
+  #sport-age-histogram {
+    left: 2%;
+  }
+  #height-and-width-histograms:last-child {
+    right: 0;
+  }
+  #anatomy-svg {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #sport-gender-pie {
+    left: 50%;
+    transform: translate(-50%, 60%);
+    width: 30%;
+  }
+}

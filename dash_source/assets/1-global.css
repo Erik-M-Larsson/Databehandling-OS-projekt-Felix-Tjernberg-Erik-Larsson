@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Work+Sans:wght@900&display=swap');
+
+article > div {
+  padding-bottom: 3rem;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+p {
+  text-align: center;
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  --heading-font-size: clamp(4rem, 10vw, 5rem);
+  font-family: 'Work Sans', sans-serif;
+  text-transform: capitalize;
+}
+h1 {
+  font-size: var(--heading-font-size);
+  margin-bottom: 0.2em;
+  padding-top: 0.75em;
+}
+h2 {
+  font-size: calc(var(--heading-font-size) * 0.75);
+  margin-top: 4em;
+}
+
+nav {
+  background-color: white;
+  flex-direction: column;
+  padding-block: 1rem;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav li,
+nav ul {
+  display: flex;
+}
+
+nav li {
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  list-style-type: none;
+}
+
+nav img,
+nav ul {
+  margin: 0 auto;
+}
+
+nav ul {
+  max-width: 800px;
+}
+
+nav img {
+  max-height: 50px;
+}
+
+.dash-graph {
+  margin: 0 2rem;
+}
+
+.main-svg,
+.glass-background {
+  border-radius: 8px;
+}
