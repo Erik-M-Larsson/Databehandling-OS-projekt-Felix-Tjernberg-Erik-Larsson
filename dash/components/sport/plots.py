@@ -5,10 +5,13 @@ import itertools
 
 def age_histogram(df):
 
-    fig = px.histogram(df, x="Age", labels={}, title="Age distribution")
+    fig = px.histogram(
+        df, x="Age", labels={}, color="Sex", barmode="group", title="Age distribution"
+    )
     fig.update_layout(
         {"paper_bgcolor": "rgba(0,0,0,0)"},
         title={"x": 0.5},
+        legend={"y": 0.5},
     )
     return fig
 
@@ -44,6 +47,7 @@ def height_histogram(df):
     fig.update_layout(
         {"paper_bgcolor": "rgba(0,0,0,0)"},
         title={"x": 0.5},
+        legend={"y": 0.5},
     )
     return fig
 
@@ -58,8 +62,7 @@ def weight_histogram(df):
         barmode="group",
     )
     fig.update_layout(
-        {"paper_bgcolor": "rgba(0,0,0,0)"},
-        title={"x": 0.5},
+        {"paper_bgcolor": "rgba(0,0,0,0)"}, title={"x": 0.5}, legend={"y": 0.5}
     )
     return fig
 
