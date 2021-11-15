@@ -1,6 +1,5 @@
 import plotly_express as px
 import pandas as pd
-import itertools
 
 
 def age_histogram(df):
@@ -67,48 +66,12 @@ def weight_histogram(df):
     return fig
 
 
-def medal_race_plot(sport_data) -> None:
+def medal_race_plot(df) -> None:
     """Animated barplot of accumulated number of medals per NOC"""
-
-    # Clean data
-    data_cleaned = sport_data.dropna(subset=["Medal"])
-    data_cleaned.drop(
-        columns=[
-            "ID",
-            "Name",
-            "Age",
-            "Height",
-            "Weight",
-            "Team",
-            "Year",
-            "Season",
-            "City",
-            "Sex",
-            "Sport",
-        ],
-        inplace=True,
-    )
-    data_cleaned.sort_values(by="Games", inplace=True)
-    data_cleaned.drop_duplicates(
-        subset=["NOC", "Games", "Event", "Medal"], inplace=True
-    )
-
-    # Calculate accumulated medals per NOC
-    medal_count = data_cleaned.groupby(by=["Games", "NOC"]).count().reset_index()
-    games_noc_combinations = pd.DataFrame(
-        itertools.product(data_cleaned["NOC"].unique(), data_cleaned["Games"].unique()),
-        columns=["NOC", "Games"],
-    )
-    medal_count = (
-        medal_count.merge(games_noc_combinations, on=["Games", "NOC"], how="right")
-        .sort_values(["Games", "NOC"])
-        .fillna(0)
-    )
-    medal_count["Cumulative_medals"] = medal_count.groupby("NOC")["Medal"].cumsum()
 
     # Plot bar diagram animation
     fig = px.bar(
-        medal_count,
+        df,
         x="Cumulative_medals",
         y="NOC",
         color="NOC",
@@ -123,7 +86,7 @@ def medal_race_plot(sport_data) -> None:
     fig.update_layout(title={"x": 0.5}, yaxis={"categoryorder": "total ascending"})
 
     # Change animation duration
-    numb_of_games = len(medal_count["Games"].unique())
+    numb_of_games = len(df["Games"].unique())
     duration = 1920 - 30 * numb_of_games
     print("numb_of_games: ", numb_of_games, "\n", "duration: ", duration)
     if numb_of_games > 1:
@@ -132,7 +95,7 @@ def medal_race_plot(sport_data) -> None:
         ] = duration  # Ref: https://community.plotly.com/t/how-to-slow-down-animation-in-plotly-express/31309
 
     # Show only top ten
-    numb_of_noc = len(medal_count["NOC"].unique())
+    numb_of_noc = len(df["NOC"].unique())
     fig.update_yaxes(range=(max(numb_of_noc - 10.5, -0.5), numb_of_noc - 0.5))
     print(
         "numb_of_noc: ",
@@ -143,8 +106,6 @@ def medal_race_plot(sport_data) -> None:
     )
 
     # Set x-ticks to integers
-    fig.update_xaxes(
-        range=(0, max(medal_count["Cumulative_medals"]) + 0.5), dtick=1, tick0=0
-    )
+    fig.update_xaxes(range=(0, max(df["Cumulative_medals"]) + 0.5), dtick=1, tick0=0)
 
     return fig

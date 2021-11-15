@@ -9,7 +9,7 @@ from components.sport.sport_list import sport_list
 import components.sport.plots as plots
 
 
-sport_data_frames = load_sport_data_frames()
+sport_data_dictionaries = load_sport_data_frames()
 
 
 anatomy_filename = "assets/anatomy.svg"
@@ -19,6 +19,7 @@ medals_filename = "assets/os-medals.svg"
 layout = html.Div(
     [
         dcc.Store(id="sport-data-frame"),
+        dcc.Store(id="sport-medal-frame"),
         html.Header(
             [
                 html.H1(id="sport-name"),
@@ -70,8 +71,15 @@ def load_data_frame(value):
     if value == None:
         return
 
-    sport_data_frame = sport_data_frames[f"{format(value.title())}"]
-    return sport_data_frame.to_json()
+    return sport_data_dictionaries[f"{format(value.title())}"]["general"].to_json()
+
+
+@app.callback(Output("sport-medal-frame", "data"), Input("sport-dropdown", "value"))
+def load_medal_frame(value):
+    if value == None:
+        return
+
+    return sport_data_dictionaries[f"{format(value.title())}"]["medal_count"].to_json()
 
 
 @app.callback(Output("sport-name", "children"), Input("sport-dropdown", "value"))
@@ -132,7 +140,7 @@ def update_weight_histogram(data):
 
 @app.callback(
     Output("sport-medal-race", "figure"),
-    Input("sport-data-frame", "data"),
+    Input("sport-medal-frame", "data"),
 )
 def update_medal_race(data):
     if data == None:
