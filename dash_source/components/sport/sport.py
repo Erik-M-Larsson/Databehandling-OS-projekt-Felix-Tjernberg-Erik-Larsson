@@ -29,8 +29,7 @@ layout = html.Div(
                     options=[
                         {"label": f"{sport}", "value": sport} for sport in sport_list
                     ],
-                    value="Cycling"
-                    # placeholder="Select a sport",
+                    placeholder="Select a sport",
                 ),
             ]
         ),
