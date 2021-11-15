@@ -66,7 +66,7 @@ def weight_histogram(df):
     return fig
 
 
-def medal_race_plot(df) -> None:
+def medal_race_plot(df):
     """Animated barplot of accumulated number of medals per NOC"""
 
     # Plot bar diagram animation
