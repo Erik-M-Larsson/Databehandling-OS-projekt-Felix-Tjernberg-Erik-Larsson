@@ -25,7 +25,7 @@ def gender_pie(df):
 
     fig.update_layout(
         {"paper_bgcolor": "rgba(0,0,0,0)"},
-        title={"x": 0.5},
+        title={"x": 0.5, "y": 0.1},
         legend={"y": 0.5},
     )
 
