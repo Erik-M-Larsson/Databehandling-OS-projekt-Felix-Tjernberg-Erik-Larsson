@@ -6,18 +6,23 @@ import itertools
 def load_sport_data_frames():
     os_data_raw = pd.read_csv("./data/athlete_events.csv")
 
-    medal_count_all = create_medal_count_data_frame(os_data_raw)
-
-    create_sport_data_frame = lambda sport_name, df: df.query(
+    create_sport_specific_data_frame = lambda sport_name, df: df.query(
         f'Sport == "{sport_name}"'
     )
 
+    sport_list = list(os_data_raw["Sport"].unique())
+
+    sport_dict_general = {
+        sport_name: create_sport_specific_data_frame(sport_name, os_data_raw)
+        for sport_name in sport_list
+    }
+
     sport_dict = {
-        sport: {
-            "general": create_sport_data_frame(sport, os_data_raw),
-            "medal_count": create_sport_data_frame(sport, medal_count_all),
+        sport_key: {
+            "general": sport_data_frame,
+            "medal_count": create_medal_count_data_frame(sport_data_frame),
         }
-        for sport in list(os_data_raw["Sport"].unique())
+        for sport_key, sport_data_frame in sport_dict_general.items()
     }
 
     return sport_dict
@@ -37,6 +42,7 @@ def create_medal_count_data_frame(df):
             "Team",
             "Year",
             "Season",
+            "Sport",
             "City",
             "Sex",
         ],
