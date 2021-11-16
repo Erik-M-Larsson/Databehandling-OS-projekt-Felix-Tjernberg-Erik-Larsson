@@ -1,6 +1,12 @@
 #landing {
   background-image: url('/assets/swedish-flag.svg');
   background-size: cover;
+}
+
+#landing h1,
+#landing h2,
+#landing h3,
+#landing p {
   color: white;
 }
 

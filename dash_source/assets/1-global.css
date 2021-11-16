@@ -68,6 +68,11 @@ nav img {
   max-height: 50px;
 }
 
+.dash-dropdown {
+  margin: 0 auto;
+  width: 50%;
+}
+
 .dash-graph {
   margin: 0 2rem;
 }
