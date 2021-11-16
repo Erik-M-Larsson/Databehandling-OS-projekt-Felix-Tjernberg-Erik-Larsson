@@ -67,25 +67,3 @@ def create_medal_count_data_frame(df):
     medal_count["Cumulative_medals"] = medal_count.groupby("NOC")["Medal"].cumsum()
 
     return medal_count
-
-
-def swedish_medal_counts(swedish_athletes):
-    swedish_medals = swedish_athletes.drop_duplicates(
-        subset=["Year", "Event", "Medal"], inplace=False
-    )
-    swedish_medal_counts = (
-        swedish_medals.groupby(by=["Year", "Medal"], sort=False).count().reset_index()
-    )
-    # swedish_medal_counts.sort_values(
-    #    by=[
-    #        "Year",
-    #        "Medal",
-    #    ],
-    #    axis=0,
-    #    ascending=[
-    #        True,
-    #        False,
-    #    ],
-    #    inplace=True,
-    # )
-    return swedish_medal_counts

@@ -1,12 +1,18 @@
+import importlib
+import os
 from dash import html
 from dash import dcc, html
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly_express as px
+import json
 
 from app import app
 from components.sport.load_sport_data import create_medal_count_data_frame
 from components.sport.plots import medal_race_plot
+from components.landing.year_list import year_list
+from components.landing.load_swed_data import swedish_medal_counts
+from components.landing.swed_plots import swedish_medals_barplot
 
 os_data_raw = pd.read_csv("./data/athlete_events.csv")
 
@@ -30,10 +36,9 @@ layout = html.Div(
                             clearable=False,
                             id="year-dropdown",
                             options=[
-                                {"label": f"Year {number}", "value": "placeholder"}
-                                for number in range(4)
+                                {"label": year, "value": year} for year in year_list
                             ],
-                            value="Year 0",
+                            value=1912,  # Best game for Sweden and in Stockholm
                         ),
                         dcc.Graph(id="sweden-medals-at-year"),
                     ]
@@ -89,3 +94,14 @@ def update_world_medal_race(data):
 
     sport_data_frame = pd.read_json(data)
     return medal_race_plot(sport_data_frame)
+
+
+@app.callback(
+    Output("sweden-medals-at-year", "figure"),
+    Input("year-dropdown", "value"),
+)
+def update_sweden_medals_at_year(year):
+    if year == None:
+        return px.bar()
+
+    return swedish_medals_barplot(swedish_medal_counts(os_data_raw), year)

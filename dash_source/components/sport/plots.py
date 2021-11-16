@@ -110,19 +110,3 @@ def medal_race_plot(df):
     fig.update_xaxes(range=(0, max(df["Cumulative_medals"]) + 0.5), dtick=1, tick0=0)
 
     return fig
-
-
-def swedish_medals_barplot(data, year):
-
-    sns.set(rc={"figure.figsize": (10, 5)})
-    ax = sns.barplot(
-        data=data.query("Year == @year"),
-        y="ID",
-        x="Medal",
-        order=["Silver", "Gold", "Bronze"],
-        palette={"Gold": "gold", "Silver": "silver", "Bronze": "darkgoldenrod"},
-    )  # .set_title(f"Medals {year}")
-
-    ax.set(title=f"Medals {year}", xlabel="", ylabel="Count")
-
-    return ax

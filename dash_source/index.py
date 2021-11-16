@@ -2,9 +2,9 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 
 from app import app
-from components import landing
-from components.sport import sport
 
+from components.sport import sport
+from components.landing import landing
 
 os_rings_filename = "assets/os-rings.svg"
 
