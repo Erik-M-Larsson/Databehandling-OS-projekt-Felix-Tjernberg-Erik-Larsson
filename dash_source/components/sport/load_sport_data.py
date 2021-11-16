@@ -76,7 +76,16 @@ def swedish_medal_counts(swedish_athletes):
     swedish_medal_counts = (
         swedish_medals.groupby(by=["Year", "Medal"], sort=False).count().reset_index()
     )
-    swedish_medal_counts.sort_values(
-        by=["Medal", "Year"], axis=0, ascending=[False, True], inplace=True
-    )
+    # swedish_medal_counts.sort_values(
+    #    by=[
+    #        "Year",
+    #        "Medal",
+    #    ],
+    #    axis=0,
+    #    ascending=[
+    #        True,
+    #        False,
+    #    ],
+    #    inplace=True,
+    # )
     return swedish_medal_counts
