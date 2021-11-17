@@ -9,6 +9,7 @@ def age_histogram(df):
         color="Sex",
         barmode="group",
         title="Age distribution",
+        color_discrete_map={"M": "#636efa", "F": "#ef553b"},
     )
     fig.update_layout(
         {"paper_bgcolor": "rgba(0,0,0,0)"},
@@ -26,7 +27,10 @@ def gender_pie(df):
     )
 
     fig = px.pie(
-        df, values=gender_count, names=["Men", "Women"], title="Gender distribution"
+        df,
+        values=gender_count,
+        names=["Male", "Female"],
+        title="Gender distribution",
     )
 
     fig.update_layout(
@@ -46,6 +50,7 @@ def height_histogram(df):
         title="Height distribution",
         color="Sex",
         barmode="group",
+        color_discrete_map={"M": "#636efa", "F": "#ef553b"},
     )
     fig.update_layout(
         {"paper_bgcolor": "rgba(0,0,0,0)"},
@@ -126,6 +131,7 @@ def weight_histogram(df):
         color="Sex",
         barmode="group",
         labels={"Sex": "Gender"},
+        color_discrete_map={"M": "#636efa", "F": "#ef553b"},
     )
     fig.update_layout(
         {"paper_bgcolor": "rgba(0,0,0,0)"},
