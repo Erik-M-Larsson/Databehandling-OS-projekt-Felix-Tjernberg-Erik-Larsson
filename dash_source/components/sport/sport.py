@@ -113,7 +113,6 @@ def load_medal_frame(value):
     Output("sport-name-heading", "children"),
     Input("url", "pathname"),
     Input("height-and-width-histograms", "children"),
-    # prevent_initial_call=True,
 )
 def update_heading_text(value, children):
     time.sleep(1)  # Hack to make callback load last
