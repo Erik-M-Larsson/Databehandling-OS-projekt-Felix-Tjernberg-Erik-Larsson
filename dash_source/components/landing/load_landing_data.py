@@ -1,5 +1,5 @@
 import pandas as pd
-from create_medal_count_data_frame import create_medal_count_data_frame
+from utilities.create_medal_count_data_frame import create_medal_count_data_frame
 
 
 def load_landing_data_frames():

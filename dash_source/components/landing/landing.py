@@ -8,11 +8,8 @@ from components.landing.load_landing_data import (
     swedish_medal_counts,
     load_landing_data_frames,
 )
+import utilities.plots as plots
 
-# from components.landing.swed_plots import swedish_medals_barplot
-import plots
-
-landing_data_dictionaries = load_landing_data_frames()
 
 layout = html.Div(
     [
@@ -81,6 +78,9 @@ layout = html.Div(
     ],
     id="landing",
 )
+
+
+landing_data_dictionaries = load_landing_data_frames()
 
 
 @app.callback(
