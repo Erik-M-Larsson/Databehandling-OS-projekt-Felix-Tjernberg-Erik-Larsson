@@ -8,13 +8,21 @@ import plotly_express as px
 import json
 
 from app import app
-from components.sport.load_sport_data import create_medal_count_data_frame
+
 from components.sport.plots import medal_race_plot
 from components.landing.year_list import year_list
-from components.landing.load_swed_data import swedish_medal_counts
+from components.landing.load_landing_data import (
+    swedish_medal_counts,
+    load_landing_data_frames,
+)
 from components.landing.swed_plots import swedish_medals_barplot
 
-os_data_raw = pd.read_csv("./data/athlete_events.csv")
+# os_data_raw = pd.read_csv("./data/athlete_events.csv")
+# os_data_raw.info()
+landing_data_dictionaries = load_landing_data_frames()
+landing_data_dictionaries["world_medal_race"].size, landing_data_dictionaries[
+    "sweden_medal_count"
+].size
 
 layout = html.Div(
     [
@@ -81,7 +89,7 @@ layout = html.Div(
 
 @app.callback(Output("world-medal-frame", "data"), Input("fun-facts", "value"))
 def load_medal_frame(value):
-    return create_medal_count_data_frame(os_data_raw).to_json()
+    return landing_data_dictionaries["world_medal_race"].to_json()
 
 
 @app.callback(
@@ -104,4 +112,6 @@ def update_sweden_medals_at_year(year):
     if year == None:
         return px.bar()
 
-    return swedish_medals_barplot(swedish_medal_counts(os_data_raw), year)
+    return swedish_medals_barplot(
+        swedish_medal_counts(landing_data_dictionaries["sweden_medal_count"]), year
+    )

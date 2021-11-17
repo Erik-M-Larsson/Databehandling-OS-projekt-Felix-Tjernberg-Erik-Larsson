@@ -69,7 +69,7 @@ def weight_histogram(df):
 
 def medal_race_plot(df):
     """Animated barplot of accumulated number of medals per NOC"""
-
+    print("df.size", df.size)
     # Plot bar diagram animation
     fig = px.bar(
         df,
@@ -78,7 +78,7 @@ def medal_race_plot(df):
         color="NOC",
         color_discrete_sequence=px.colors.qualitative.Alphabet,
         animation_group="NOC",
-        animation_frame="Games",
+        animation_frame="Year",
         title="Medal race",
         labels={"Cumulative_medals": "Medals"},
     )
@@ -87,7 +87,7 @@ def medal_race_plot(df):
     fig.update_layout(title={"x": 0.5}, yaxis={"categoryorder": "total ascending"})
 
     # Change animation duration
-    numb_of_games = len(df["Games"].unique())
+    numb_of_games = len(df["Year"].unique())
     duration = 1920 - 30 * numb_of_games
     print("numb_of_games: ", numb_of_games, "\n", "duration: ", duration)
     if numb_of_games > 1:
@@ -107,6 +107,8 @@ def medal_race_plot(df):
     )
 
     # Set x-ticks to integers
-    fig.update_xaxes(range=(0, max(df["Cumulative_medals"]) + 0.5), dtick=1, tick0=0)
+    fig.update_xaxes(
+        range=(0, max(df["Cumulative_medals"]) + 0.5), tick0=0
+    )  # , dtick=1
 
     return fig
