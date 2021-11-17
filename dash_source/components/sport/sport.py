@@ -8,7 +8,7 @@ from dash.dependencies import Input, Output
 from app import app
 from components.sport.load_sport_data import load_sport_data_frames
 from components.sport.sport_list import sport_list
-import components.sport.plots as plots
+import plots
 
 
 anatomy_filename = "https://raw.githubusercontent.com/Erik-M-Larsson/Databehandling-OS-projekt-Felix-Tjernberg-Erik-Larsson/de0f7d0a8dd874c37ca3ed00c72027bc72e9ef6c/dash_source/assets/anatomy.svg"

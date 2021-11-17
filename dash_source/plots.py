@@ -2,7 +2,6 @@ import plotly_express as px
 
 
 def age_histogram(df):
-
     fig = px.histogram(
         df, x="Age", labels={}, color="Sex", barmode="group", title="Age distribution"
     )
@@ -50,21 +49,6 @@ def height_histogram(df):
     return fig
 
 
-def weight_histogram(df):
-    fig = px.histogram(
-        df,
-        x="Weight",
-        labels={},
-        title="Weight distribution",
-        color="Sex",
-        barmode="group",
-    )
-    fig.update_layout(
-        {"paper_bgcolor": "rgba(0,0,0,0)"}, title={"x": 0.5}, legend={"y": 0.5}
-    )
-    return fig
-
-
 def medal_race_plot(df):
     """Animated barplot of accumulated number of medals per NOC"""
 
@@ -100,4 +84,42 @@ def medal_race_plot(df):
     # Set x-ticks
     fig.update_xaxes(range=(0, max(df["Cumulative_medals"]) + 0.5), tick0=0)
 
+    return fig
+
+
+def swedish_medals_barplot(data, year):
+    fig = px.histogram(
+        data.query("Year == @year"),
+        x="Medal",
+        color="Medal",
+        color_discrete_map={
+            "Gold": "gold",
+            "Silver": "silver",
+            "Bronze": "darkgoldenrod",
+        },
+        barmode="relative",
+    )
+    fig.update_layout(
+        title={"text": f"Medals {year}", "x": 0.5},
+        xaxis_title="",
+        yaxis_title="",
+        bargap=0.2,
+        showlegend=False,
+    )
+
+    return fig
+
+
+def weight_histogram(df):
+    fig = px.histogram(
+        df,
+        x="Weight",
+        labels={},
+        title="Weight distribution",
+        color="Sex",
+        barmode="group",
+    )
+    fig.update_layout(
+        {"paper_bgcolor": "rgba(0,0,0,0)"}, title={"x": 0.5}, legend={"y": 0.5}
+    )
     return fig

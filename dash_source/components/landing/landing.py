@@ -3,13 +3,14 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 
 from app import app
-from components.sport.plots import medal_race_plot
 from components.landing.year_list import year_list
 from components.landing.load_landing_data import (
     swedish_medal_counts,
     load_landing_data_frames,
 )
-from components.landing.swed_plots import swedish_medals_barplot
+
+# from components.landing.swed_plots import swedish_medals_barplot
+import plots
 
 landing_data_dictionaries = load_landing_data_frames()
 
@@ -89,7 +90,7 @@ layout = html.Div(
     ),  # Hack to make callback fire when component is loaded
 )
 def update_world_medal_race(children):
-    return medal_race_plot(landing_data_dictionaries["world_medal_count"])
+    return plots.medal_race_plot(landing_data_dictionaries["world_medal_count"])
 
 
 @app.callback(
@@ -100,6 +101,6 @@ def update_sweden_medals_at_year(year):
     if year == None:
         return px.bar()
 
-    return swedish_medals_barplot(
+    return plots.swedish_medals_barplot(
         swedish_medal_counts(landing_data_dictionaries["sweden_medal_count"]), year
     )
