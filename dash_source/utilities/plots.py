@@ -9,6 +9,7 @@ def age_histogram(df):
         {"paper_bgcolor": "rgba(0,0,0,0)"},
         title={"x": 0.5},
         legend={"y": 0.5},
+        yaxis_title="",
     )
     return fig
 
@@ -45,6 +46,7 @@ def height_histogram(df):
         {"paper_bgcolor": "rgba(0,0,0,0)"},
         title={"x": 0.5},
         legend={"y": 0.5},
+        yaxis_title="",
     )
     return fig
 
@@ -114,12 +116,16 @@ def weight_histogram(df):
     fig = px.histogram(
         df,
         x="Weight",
-        labels={},
         title="Weight distribution",
         color="Sex",
         barmode="group",
     )
     fig.update_layout(
-        {"paper_bgcolor": "rgba(0,0,0,0)"}, title={"x": 0.5}, legend={"y": 0.5}
+        {"paper_bgcolor": "rgba(0,0,0,0)"},
+        title={"x": 0.5},
+        legend={
+            "y": 0.5,
+        },
+        yaxis_title="",
     )
     return fig
