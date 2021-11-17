@@ -20,7 +20,7 @@ layout = html.Div(
     [
         dcc.Store(id="world-medal-frame"),
         html.H1("Sweden is best per capita*"),
-        html.Aside([html.P("* Best per capita in top 10 of countries")]),
+        html.Aside([html.P("* Best per capita in top 10 of medal taking countries")]),
         html.Section(
             [
                 html.Div(
