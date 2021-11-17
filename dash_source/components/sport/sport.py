@@ -92,34 +92,50 @@ def navigate_to_sport(value):
 
 
 @app.callback(
-    Output("sport-data-frame", "data"), Input("sport-name", "sport-name-test")
+    Output("sport-data-frame", "data"),
+    Input("url", "pathname"),
+    Input(
+        "height-and-width-histograms", "children"
+    ),  # Hack to make callback fire when component is loaded
 )
-def load_data_frame(value):
-    if value == None:
+def load_data_frame(pathname, children):
+    time.sleep(1.1)  # Hack to make callback load last
+    if not match_sport_list(get_sport_name(pathname)):
         return
 
-    return sport_data_dictionaries[f"{format(value.title())}"]["general"].to_json()
+    return sport_data_dictionaries[f"{get_sport_name(pathname)}"]["general"].to_json()
 
 
-@app.callback(Output("sport-medal-frame", "data"), Input("sport-name", "children"))
-def load_medal_frame(value):
-    if value == None:
+@app.callback(
+    Output("sport-medal-frame", "data"),
+    Input("url", "pathname"),
+    Input(
+        "height-and-width-histograms", "children"
+    ),  # Hack to make callback fire when component is loaded
+)
+def load_medal_frame(pathname, children):
+    time.sleep(1.1)  # Hack to make callback load last
+    if not match_sport_list(get_sport_name(pathname)):
         return
 
-    return sport_data_dictionaries[f"{format(value.title())}"]["medal_count"].to_json()
+    return sport_data_dictionaries[f"{get_sport_name(pathname)}"][
+        "medal_count"
+    ].to_json()
 
 
 @app.callback(
     Output("sport-name-heading", "children"),
     Input("url", "pathname"),
-    Input("height-and-width-histograms", "children"),
+    Input(
+        "height-and-width-histograms", "children"
+    ),  # Hack to make callback fire when component is loaded
 )
-def update_heading_text(value, children):
+def update_heading_text(pathname, children):
     time.sleep(1)  # Hack to make callback load last
-    if not match_sport_list(get_sport_name(value)):
+    if not match_sport_list(get_sport_name(pathname)):
         return "Sport stats"
 
-    return get_sport_name(value)
+    return get_sport_name(pathname)
 
 
 @app.callback(
