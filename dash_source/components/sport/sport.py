@@ -19,7 +19,6 @@ layout = html.Div(
     [
         dcc.Store(id="sport-data-frame"),
         dcc.Store(id="sport-medal-frame"),
-        # html.P(id="sport-name"),
         html.Header(
             [
                 html.H1(id="sport-name-heading"),
@@ -39,7 +38,13 @@ layout = html.Div(
             src=medals_filename,
             alt="Illustration of silver, gold and bronze olympic medals",
         ),
-        dcc.Graph(id="sport-medal-race"),
+        dcc.Loading(
+            [
+                dcc.Graph(id="sport-medal-race"),
+            ],
+            type="circle",
+            color="blue",
+        ),
         html.H2("Player type"),
         html.Section(
             [
@@ -140,50 +145,24 @@ def update_heading_text(pathname, children):
 
 @app.callback(
     Output("sport-age-histogram", "figure"),
-    Input("sport-data-frame", "data"),
-)
-def update_age_histogram(data):
-    if data == None:
-        return px.histogram()
-
-    sport_data_frame = pd.read_json(data)
-    return plots.age_histogram(sport_data_frame)
-
-
-@app.callback(
     Output("sport-gender-pie", "figure"),
-    Input("sport-data-frame", "data"),
-)
-def update_gender_pie(data):
-    if data == None:
-        return px.pie()
-
-    sport_data_frame = pd.read_json(data)
-    return plots.gender_pie(sport_data_frame)
-
-
-@app.callback(
     Output("sport-height-histogram", "figure"),
-    Input("sport-data-frame", "data"),
-)
-def update_height_histogram(data):
-    if data == None:
-        return px.histogram()
-
-    sport_data_frame = pd.read_json(data)
-    return plots.height_histogram(sport_data_frame)
-
-
-@app.callback(
     Output("sport-weight-histogram", "figure"),
     Input("sport-data-frame", "data"),
 )
-def update_weight_histogram(data):
+def update_player_type_sport_graphs(data):
     if data == None:
-        return px.histogram()
+        empty_graph = px.histogram()
+        empty_graph.update_layout({"paper_bgcolor": "rgba(0,0,0,0)"})
+        return empty_graph, empty_graph, empty_graph, empty_graph
 
     sport_data_frame = pd.read_json(data)
-    return plots.weight_histogram(sport_data_frame)
+    return (
+        plots.age_histogram(sport_data_frame),
+        plots.gender_pie(sport_data_frame),
+        plots.height_histogram(sport_data_frame),
+        plots.weight_histogram(sport_data_frame),
+    )
 
 
 @app.callback(
