@@ -8,7 +8,7 @@ from components.sport.load_sport_data import load_sport_data_frames
 from components.sport.sport_list import sport_list
 import components.sport.plots as plots
 
-# print("sport ********************************************")
+
 sport_data_dictionaries = load_sport_data_frames()
 
 

@@ -1,6 +1,3 @@
-import importlib
-import os
-from dash import html
 from dash import dcc, html
 from dash.dependencies import Input, Output
 import pandas as pd
@@ -17,12 +14,7 @@ from components.landing.load_landing_data import (
 )
 from components.landing.swed_plots import swedish_medals_barplot
 
-# os_data_raw = pd.read_csv("./data/athlete_events.csv")
-# os_data_raw.info()
 landing_data_dictionaries = load_landing_data_frames()
-landing_data_dictionaries["world_medal_race"].size, landing_data_dictionaries[
-    "sweden_medal_count"
-].size
 
 layout = html.Div(
     [

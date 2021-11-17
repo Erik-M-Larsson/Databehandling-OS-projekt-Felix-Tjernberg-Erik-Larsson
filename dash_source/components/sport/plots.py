@@ -1,6 +1,4 @@
 import plotly_express as px
-import pandas as pd
-import seaborn as sns
 
 
 def age_histogram(df):
@@ -69,7 +67,7 @@ def weight_histogram(df):
 
 def medal_race_plot(df):
     """Animated barplot of accumulated number of medals per NOC"""
-    print("df.size", df.size)
+
     # Plot bar diagram animation
     fig = px.bar(
         df,
@@ -88,9 +86,9 @@ def medal_race_plot(df):
 
     # Change animation duration
     numb_of_games = len(df["Year"].unique())
-    duration = 1920 - 30 * numb_of_games
-    print("numb_of_games: ", numb_of_games, "\n", "duration: ", duration)
+
     if numb_of_games > 1:
+        duration = 1920 - 30 * numb_of_games
         fig.layout.updatemenus[0].buttons[0].args[1]["frame"][
             "duration"
         ] = duration  # Ref: https://community.plotly.com/t/how-to-slow-down-animation-in-plotly-express/31309
@@ -98,17 +96,8 @@ def medal_race_plot(df):
     # Show only top ten
     numb_of_noc = len(df["NOC"].unique())
     fig.update_yaxes(range=(max(numb_of_noc - 10.5, -0.5), numb_of_noc - 0.5))
-    print(
-        "numb_of_noc: ",
-        numb_of_noc,
-        "\n",
-        "Y-axis range=",
-        (max(numb_of_noc - 10.5, -0.5), numb_of_noc - 0.5),
-    )
 
-    # Set x-ticks to integers
-    fig.update_xaxes(
-        range=(0, max(df["Cumulative_medals"]) + 0.5), tick0=0
-    )  # , dtick=1
+    # Set x-ticks
+    fig.update_xaxes(range=(0, max(df["Cumulative_medals"]) + 0.5), tick0=0)
 
     return fig
