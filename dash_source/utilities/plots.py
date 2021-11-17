@@ -64,7 +64,7 @@ def medal_race_plot(df):
         animation_group="NOC",
         animation_frame="Year",
         title="Medal race",
-        labels={"Cumulative_medals": "Medals"},
+        labels={"Cumulative_medals": "Medals", "NOC": "Country code"},
     )
 
     # Sort y-axis
