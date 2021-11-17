@@ -28,7 +28,7 @@ layout = html.Div(
     [
         dcc.Store(id="world-medal-frame"),
         html.H1("Sweden is best per capita*"),
-        html.Aside([html.P("* Best per capita in top 10 of countries")]),
+        html.Aside([html.P("* Best per capita in top 10 of medal taking countries")]),
         html.Section(
             [
                 html.Div(
@@ -60,10 +60,10 @@ layout = html.Div(
                 html.Div(
                     [
                         html.H3(
-                            "Sweden's youngest medal",
+                            "Sweden's youngest medal taker",
                         ),
                         html.P(
-                            "Nils skoglund at the age of 13 took silver in diving year 1920",
+                            "Sweden's youngest medal taker took silver in diving year 1920 at the age of 13",
                         ),
                     ],
                     className="glass-background",
@@ -71,10 +71,10 @@ layout = html.Div(
                 html.Div(
                     [
                         html.H3(
-                            "Sweden's oldest medal",
+                            "Sweden's oldest medal taker",
                         ),
                         html.P(
-                            "Oscar Gomer Swahn at the age of 72 took silver in shooting year 1920",
+                            "Sweden's oldest medal taker took silver in shooting year 1920 at the age of 72",
                         ),
                     ],
                     className="glass-background",
