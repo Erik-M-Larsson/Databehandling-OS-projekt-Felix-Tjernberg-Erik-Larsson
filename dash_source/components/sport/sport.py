@@ -43,7 +43,7 @@ layout = html.Div(
                 dcc.Graph(id="sport-medal-race"),
             ],
             type="circle",
-            color="blue",
+            color="Black",
         ),
         html.H2("Player type"),
         html.Section(
