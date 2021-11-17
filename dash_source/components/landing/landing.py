@@ -55,7 +55,7 @@ layout = html.Div(
                             "Sweden's youngest medal",
                         ),
                         html.P(
-                            "Nils skoglund at the age of 13 took silver in diving year 1920",
+                            "Sweden's youngest medal taker took silver in diving year 1920 at the age of 13",
                         ),
                     ],
                     className="glass-background",
@@ -66,7 +66,7 @@ layout = html.Div(
                             "Sweden's oldest medal",
                         ),
                         html.P(
-                            "Oscar Gomer Swahn at the age of 72 took silver in shooting year 1920",
+                            "Sweden's oldest medal taker took silver in shooting year 1920 at the age of 72",
                         ),
                     ],
                     className="glass-background",
