@@ -1,5 +1,5 @@
 import pandas as pd
-from components.sport.load_sport_data import create_medal_count_data_frame
+from create_medal_count_data_frame import create_medal_count_data_frame
 
 
 def load_landing_data_frames():
