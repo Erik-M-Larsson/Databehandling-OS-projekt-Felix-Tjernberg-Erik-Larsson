@@ -3,7 +3,12 @@ import plotly_express as px
 
 def age_histogram(df):
     fig = px.histogram(
-        df, x="Age", labels={}, color="Sex", barmode="group", title="Age distribution"
+        df,
+        x="Age",
+        labels={"Sex": "Gender"},
+        color="Sex",
+        barmode="group",
+        title="Age distribution",
     )
     fig.update_layout(
         {"paper_bgcolor": "rgba(0,0,0,0)"},
@@ -37,7 +42,7 @@ def height_histogram(df):
     fig = px.histogram(
         df,
         x="Height",
-        labels={},
+        labels={"Sex": "Gender"},
         title="Height distribution",
         color="Sex",
         barmode="group",
@@ -100,6 +105,7 @@ def swedish_medals_barplot(data, year):
             "Bronze": "darkgoldenrod",
         },
         barmode="relative",
+        labels={"Sex": "Gender"},
     )
     fig.update_layout(
         title={"text": f"Medals {year}", "x": 0.5},
@@ -119,6 +125,7 @@ def weight_histogram(df):
         title="Weight distribution",
         color="Sex",
         barmode="group",
+        labels={"Sex": "Gender"},
     )
     fig.update_layout(
         {"paper_bgcolor": "rgba(0,0,0,0)"},
