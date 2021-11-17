@@ -1,8 +1,5 @@
-import os
-import pandas as pd
 import itertools
-
-from pandas.core.frame import DataFrame
+import pandas as pd
 
 
 def load_sport_data_frames():
@@ -19,7 +16,7 @@ def load_sport_data_frames():
         for sport_name in sport_list
     }
 
-    sport_dict = {
+    sport_dicts = {
         sport_key: {
             "general": sport_data_frame,
             "medal_count": create_medal_count_data_frame(sport_data_frame),
@@ -27,7 +24,7 @@ def load_sport_data_frames():
         for sport_key, sport_data_frame in sport_dict_general.items()
     }
 
-    return sport_dict
+    return sport_dicts
 
 
 def create_medal_count_data_frame(df):

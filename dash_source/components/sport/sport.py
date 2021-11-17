@@ -1,9 +1,9 @@
 import dash
 import pandas as pd
 import plotly_express as px
+import time
 from dash import dcc, html
 from dash.dependencies import Input, Output
-import time
 
 from app import app
 from components.sport.load_sport_data import load_sport_data_frames

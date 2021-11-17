@@ -37,7 +37,3 @@ year_list = [
     2014,
     2016,
 ]
-
-# year_list = (
-#    pd.read_csv("./data/athlete_events.csv").loc["Year"].copy().sort_values().unique()
-# )

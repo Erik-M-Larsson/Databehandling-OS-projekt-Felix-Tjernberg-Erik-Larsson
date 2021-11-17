@@ -5,12 +5,12 @@ from components.sport.load_sport_data import create_medal_count_data_frame
 def load_landing_data_frames():
     os_data_raw = pd.read_csv("./data/athlete_events.csv")
 
-    landing_dict = {
-        "world_medal_race": create_medal_count_data_frame(os_data_raw),
+    landing_dicts = {
+        "world_medal_count": create_medal_count_data_frame(os_data_raw),
         "sweden_medal_count": swedish_medal_counts(os_data_raw),
     }
 
-    return landing_dict
+    return landing_dicts
 
 
 def swedish_medal_counts(data):

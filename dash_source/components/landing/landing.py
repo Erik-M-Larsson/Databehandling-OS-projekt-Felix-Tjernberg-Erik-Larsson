@@ -1,11 +1,8 @@
+import plotly_express as px
 from dash import dcc, html
 from dash.dependencies import Input, Output
-import pandas as pd
-import plotly_express as px
-import json
 
 from app import app
-
 from components.sport.plots import medal_race_plot
 from components.landing.year_list import year_list
 from components.landing.load_landing_data import (
@@ -18,7 +15,7 @@ landing_data_dictionaries = load_landing_data_frames()
 
 layout = html.Div(
     [
-        dcc.Store(id="world-medal-frame"),
+        # dcc.Store(id="world-medal-frame"),
         html.H1("Sweden is best per capita*"),
         html.Aside([html.P("* Best per capita in top 10 of medal taking countries")]),
         html.Section(
@@ -26,7 +23,13 @@ layout = html.Div(
                 html.Div(
                     [
                         html.H2("World medal race top 10"),
-                        dcc.Graph(id="world-medal-race"),
+                        dcc.Loading(
+                            [
+                                dcc.Graph(id="world-medal-race"),
+                            ],
+                            type="circle",
+                            color="white",
+                        ),
                     ]
                 ),
                 html.Div(
@@ -38,7 +41,7 @@ layout = html.Div(
                             options=[
                                 {"label": year, "value": year} for year in year_list
                             ],
-                            value=1912,  # Best game for Sweden and in Stockholm
+                            value=1912,  # Best year for Sweden and in Stockholm
                         ),
                         dcc.Graph(id="sweden-medals-at-year"),
                     ]
@@ -79,21 +82,14 @@ layout = html.Div(
 )
 
 
-@app.callback(Output("world-medal-frame", "data"), Input("fun-facts", "value"))
-def load_medal_frame(value):
-    return landing_data_dictionaries["world_medal_race"].to_json()
-
-
 @app.callback(
     Output("world-medal-race", "figure"),
-    Input("world-medal-frame", "data"),
+    Input(
+        "sweden-medals-at-year", "children"
+    ),  # Hack to make callback fire when component is loaded
 )
-def update_world_medal_race(data):
-    if data == None:
-        return px.bar()
-
-    sport_data_frame = pd.read_json(data)
-    return medal_race_plot(sport_data_frame)
+def update_world_medal_race(children):
+    return medal_race_plot(landing_data_dictionaries["world_medal_count"])
 
 
 @app.callback(
