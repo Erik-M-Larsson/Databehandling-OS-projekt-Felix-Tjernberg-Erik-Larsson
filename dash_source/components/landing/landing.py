@@ -52,7 +52,7 @@ layout = html.Div(
                 html.Div(
                     [
                         html.H3(
-                            "Sweden's youngest medal",
+                            "Sweden's youngest medal taker",
                         ),
                         html.P(
                             "Sweden's youngest medal taker took silver in diving year 1920 at the age of 13",
@@ -63,7 +63,7 @@ layout = html.Div(
                 html.Div(
                     [
                         html.H3(
-                            "Sweden's oldest medal",
+                            "Sweden's oldest medal taker",
                         ),
                         html.P(
                             "Sweden's oldest medal taker took silver in shooting year 1920 at the age of 72",
