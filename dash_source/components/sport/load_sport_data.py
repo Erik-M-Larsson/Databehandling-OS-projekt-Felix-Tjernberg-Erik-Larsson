@@ -65,27 +65,25 @@ def create_medal_count_data_frame(df):
         .fillna(0)
     )
     medal_count["Cumulative_medals"] = medal_count.groupby("NOC")["Medal"].cumsum()
+    medal_count.drop(columns=["Event", "Medal"], inplace=True)
 
-    top_list = pd.DataFrame()
-    # print("top_list", "\n", top_list)
+    # Filter out only the NOC:s that appear in top ten over all years
+    noc_top_ten_all_years = pd.DataFrame()
 
     for year in medal_count["Year"].unique():
-        top_ten_year = (
+        noc_top_ten_year = (
             medal_count.query("Year == @year")
             .sort_values(by="Cumulative_medals", ascending=False)["NOC"]
             .head(10)
-        )
-        # print("year", year, "\n", "top_ten_year", "\n", top_ten_year, "\n")
-        top_list = pd.concat(
-            [top_list, top_ten_year],
+        )  # All NOC in top ten each year
+
+        noc_top_ten_all_years = pd.concat(
+            [noc_top_ten_all_years, noc_top_ten_year],
             axis=0,
-        )
+        )  # All NOC in top ten over all years
 
-    top_list.drop_duplicates(inplace=True)
-    top_list.columns = ["NOC"]
+    noc_top_ten_all_years.drop_duplicates(inplace=True)
+    noc_top_ten_all_years.columns = ["NOC"]
+    medal_count_top_ten = noc_top_ten_all_years.merge(medal_count, how="left", on="NOC")
 
-    apa = top_list.merge(medal_count, how="left", on="NOC")
-    # print("top_list", "\n", apa["NOC"].unique().size)
-    # apa["NOC"].unique()
-
-    return apa
+    return medal_count_top_ten
