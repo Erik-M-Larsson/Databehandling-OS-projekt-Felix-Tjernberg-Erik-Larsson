@@ -10,6 +10,20 @@ body {
 
 h1,
 h2,
+h3 {
+  --heading-font-size: clamp(4rem, 10vw, 5rem);
+  font-family: 'Work Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+text {
+  text-transform: capitalize;
+}
+
+h1,
+h2,
 h3,
 p {
   text-align: center;
@@ -17,13 +31,6 @@ p {
   width: 100%;
 }
 
-h1,
-h2,
-h3 {
-  --heading-font-size: clamp(4rem, 10vw, 5rem);
-  font-family: 'Work Sans', sans-serif;
-  text-transform: capitalize;
-}
 h1 {
   font-size: var(--heading-font-size);
   margin-bottom: 0.2em;

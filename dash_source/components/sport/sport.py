@@ -1,14 +1,14 @@
 import dash
 import pandas as pd
 import plotly_express as px
+import time
 from dash import dcc, html
 from dash.dependencies import Input, Output
-import time
 
 from app import app
 from components.sport.load_sport_data import load_sport_data_frames
 from components.sport.sport_list import sport_list
-import components.sport.plots as plots
+import utilities.plots as plots
 
 
 anatomy_filename = "https://raw.githubusercontent.com/Erik-M-Larsson/Databehandling-OS-projekt-Felix-Tjernberg-Erik-Larsson/de0f7d0a8dd874c37ca3ed00c72027bc72e9ef6c/dash_source/assets/anatomy.svg"
@@ -43,7 +43,7 @@ layout = html.Div(
                 dcc.Graph(id="sport-medal-race"),
             ],
             type="circle",
-            color="blue",
+            color="Black",
         ),
         html.H2("Player type"),
         html.Section(
