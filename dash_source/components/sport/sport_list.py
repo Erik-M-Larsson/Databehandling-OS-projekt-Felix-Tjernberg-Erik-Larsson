@@ -29,6 +29,7 @@ sport_list = [
     "Gymnastics",
     "Handball",
     "Hockey",
+    "Ice Hockey",
     "Jeu De Paume",
     "Judo",
     "Lacrosse",
