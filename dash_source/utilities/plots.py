@@ -31,6 +31,7 @@ def gender_pie(df):
         values=gender_count,
         names=["Male", "Female"],
         title="Gender distribution",
+        color_discrete_map={"Male": "#636efa", "Female": "#ef553b"},
     )
 
     fig.update_layout(
